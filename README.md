@@ -70,9 +70,9 @@ Realizar tentativa de autenticação via força bruta no serviço FTP do sistema
 
 ## 5.1.2 - Metodologia
 
-* Criação de wordlists de usuários e senhas
-* Execução de ataque automatizado
-* Validação de credenciais
+* 1° passo: Criação de wordlists de usuários e senhas.
+* 2° passo: Execução de ataque automatizado.
+* 3° passo: Checagem de credenciais obtidas.
 
 ## 5.1.3 - Execução
 
@@ -149,85 +149,48 @@ Visto esse resultado, eu preferi manter a wordlist de usuários mas procurar por
 
 ## 5.3.1 - Objetivo
 
-Testar autenticação utilizando uma senha comum para múltiplos usuários.
+Testar autenticação utilizando poucas senha comum para múltiplos usuários. Mirando no serviço SMB e usando enumeração para, entre diversos dados, determinar usuários válidos do IP alvo e assim usar poucas senhas populares em comum para encontrar credenciais válidas.
 
 ## 5.3.2 - Metodologia
 
-* Enumeração de usuários
-* Aplicação de password spraying
-* Validação de acessos
+* 1° passo: Enumeração de usuários usando enum.
+* 2° passo: Aplicação de password spraying com o medusa.
+* 3° passo: Validação das credencias obtidas.
 
 ## 5.3.3 - Execução
 
+<img width="494" height="39" alt="image" src="https://github.com/user-attachments/assets/735bb404-bdc7-47d4-9d36-79143dbe8e29" />
+
+O código acima é usado para enumerar diversas coisas sobre o IP alvo, com o parâmetro -a servindo para utilizar todas as ferramentas de listagem possíveis, enquanto o "tee" registra todos esses dados em um arquivo.
+
+<img width="261" height="579" alt="image" src="https://github.com/user-attachments/assets/48d04b19-8cc5-4237-9180-91fd7a9b2258" />
+
+Baseado nos usuários obtidos alguns dos nomes mais comuns e visados foram escolhidos para criar uma nova wordlist de usuários.
+
+<img width="812" height="50" alt="image" src="https://github.com/user-attachments/assets/4ade98a8-5789-46f5-b66a-79a0a9a83c41" />
+
+E por fim, para as senhas que serão utilizadas foram escolhidas apenas 5 das senhas mais populares utilizadas.
+
+<img width="611" height="44" alt="image" src="https://github.com/user-attachments/assets/e94a8d6d-7882-440c-a32d-1b5b6d73ec28" />
 
 ## 5.3.4 - Resultados
 
-* Credenciais válidas encontradas
-* Comportamento do sistema
+Antes de tudo é importante elucidar alguns dos parâmetros usados nesse comando como -M smbnt que seleciona o módulo de ataque especificamente para quebrar senhas do protocolo SMB, -T 50 que define o número total de alvos a serem testados simultaneamente (neste caso, embora haja apenas um host, o parâmetro limita o paralelismo global). Apenas os resultados positivos obtidos foram mostrados a fim de manter clareza.
+
+<img width="917" height="77" alt="image" src="https://github.com/user-attachments/assets/33572c51-7254-4ff6-acd4-e76f2118e062" />
+
+#### usuário: msfadmin
+#### senha: msfadmin
+
+Após os testes foi encontrada uma credencial válida, mas antes ela precisa ser testada para advocar sua validez.
+
+<img width="754" height="333" alt="image" src="https://github.com/user-attachments/assets/728eed85-339e-4f34-9d21-d17a5d9b5fc6" />
+
+Para confirmar as credenciais obtidas anteriormente, usamos do comando "smbclient", assim confirmando sua validez.
 
 ---
 
-## 🧠 Análise
+# 6 - Conclusão
 
-* Diferença entre força bruta e password spraying
-* Efetividade do ataque
-
----
-
-# 🛡️ Medidas de Mitigação
-
-Para evitar vulnerabilidades exploradas neste projeto, recomenda-se:
-
-* Utilização de senhas fortes
-* Implementação de autenticação multifator (MFA)
-* Bloqueio após múltiplas tentativas de login
-* Monitoramento de logs de acesso
-* Implementação de rate limiting
-* Uso de CAPTCHA em aplicações web
-
----
-
-# 📸 Evidências
-
-Adicione prints na pasta `/images` e referencie aqui:
-
-* Enumeração de serviços
-* Execução dos ataques
-* Resultados obtidos
-
----
-
-# 📁 Estrutura do Projeto
-
-```id="u8"
-projeto/
-├── README.md
-├── wordlists/
-├── images/
-```
-
----
-
-# 📚 Aprendizados
-
-Descreva aqui o que você aprendeu com o projeto.
-
-Exemplo:
-
-* Importância de políticas de senha
-* Fragilidade de sistemas sem proteção
-* Relevância de ferramentas clássicas de segurança
-
----
-
-# ⚠️ Aviso Legal
-
-Este projeto foi realizado exclusivamente para fins educacionais, em ambiente controlado, com sistemas vulneráveis intencionalmente configurados.
-
----
-
-# 🚀 Conclusão
-
-Resumo final do projeto e sua importância para a segurança da informação.
-
----
+A execução deste projeto evidenciou que vulnerabilidades críticas ainda podem ser exploradas a partir de técnicas simples, como ataques de força bruta, especialmente em ambientes que não implementam boas práticas de segurança. É importante citar que os testes realizados representam versões menores de uma real tentativa de invasão, que usaria milhões de usuários e milhões de senhas para criar um número imenso de combinações a fim de invadir o sistema alvo, enquanto os testes utilizaram apenas uma base reduzida de dados, esses nomes que compõe as wordlists advém justamente de vazamentos, o que comprova mais o ponto de que há uma necessidade grande por cibersegurança.
+Dessa forma, conclui-se que a segurança de sistemas depende diretamente da adoção de práticas como políticas de senha robustas, autenticação multifator, monitoramento contínuo, limitação de tentativas de login e uso de CAPTCHA em aplicações web, deve todas ser aplicadas para prevenir danos e vazamentos de dados que tem potencial desastroso. Este projeto reforça que o conhecimento das técnicas ofensivas é fundamental para a construção de defesas eficazes, sendo essencial para profissionais que atuam na área de segurança da informação.
