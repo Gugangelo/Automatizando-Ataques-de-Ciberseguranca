@@ -106,10 +106,15 @@ Simular um ataque de força bruta em um formulário de login na web usando o DVW
 ## 5.2.2 - Metodologia
 
 * 1° passo: Acessar a URL http://<IP_DO_METASPLOITABLE>/dvwa
-* 2° passo: Definição do nível de segurança
-* 3° passo: Automatizar de tentativas de login com o medusa
 
 <img width="1232" height="675" alt="image" src="https://github.com/user-attachments/assets/17ef685d-3811-4043-94d0-28acdac10853" />
+
+* 2° passo: Definição do nível de segurança para "low".
+* 3° passo: Desbrindo os parâmetros utilizados no processo de login com inspecionar elementos.
+
+<img width="1243" height="688" alt="image" src="https://github.com/user-attachments/assets/6cdc88ef-cf9b-4d0d-b0d0-a6c3c4d90704" />
+
+* 4° passo: Automatizar de tentativas de login com o medusa.
 
 ## 5.2.3 - Execução
 
