@@ -110,7 +110,7 @@ Simular um ataque de força bruta em um formulário de login na web usando o DVW
 <img width="1232" height="675" alt="image" src="https://github.com/user-attachments/assets/17ef685d-3811-4043-94d0-28acdac10853" />
 
 * 2° passo: Definição do nível de segurança para "low".
-* 3° passo: Desbrindo os parâmetros utilizados no processo de login com inspecionar elementos.
+* 3° passo: Descobrindo os parâmetros utilizados no processo de login com inspecionar elementos.
 
 <img width="1243" height="688" alt="image" src="https://github.com/user-attachments/assets/6cdc88ef-cf9b-4d0d-b0d0-a6c3c4d90704" />
 
@@ -198,4 +198,5 @@ Para confirmar as credenciais obtidas anteriormente, usamos do comando "smbclien
 # 6 - Conclusão
 
 A execução deste projeto evidenciou que vulnerabilidades críticas ainda podem ser exploradas a partir de técnicas simples, como ataques de força bruta, especialmente em ambientes que não implementam boas práticas de segurança. É importante citar que os testes realizados representam versões menores de uma real tentativa de invasão, que usaria milhões de usuários e milhões de senhas para criar um número imenso de combinações a fim de invadir o sistema alvo, enquanto os testes utilizaram apenas uma base reduzida de dados, esses nomes que compõe as wordlists advém justamente de vazamentos, o que comprova mais o ponto de que há uma necessidade grande por cibersegurança.
+
 Dessa forma, conclui-se que a segurança de sistemas depende diretamente da adoção de práticas como políticas de senha robustas, autenticação multifator, monitoramento contínuo, limitação de tentativas de login e uso de CAPTCHA em aplicações web, deve todas ser aplicadas para prevenir danos e vazamentos de dados que tem potencial desastroso. Este projeto reforça que o conhecimento das técnicas ofensivas é fundamental para a construção de defesas eficazes, sendo essencial para profissionais que atuam na área de segurança da informação.
